@@ -1,1 +1,22 @@
+create view PBE_Fct_Fz 
+as
+select 
+CL.JURNAL as fct_jurnal,
+CL.datainr as fct_data,
+CL.DATASC as fct_scadenta,
+CL.NDP as fct_marca0,
+CL.marca as fct__marca1,
+CL.LITM as fct__marca2,
+CL.cont as fct_contFz,
+CT.titlu as fct__denFz, 
+CL.credit as fct__valoareRON,
+CL.DEVCREDIT as fct_valoareVAL,
+CL.COD as fct_moneda,
+CL.CURS as fct_curs
 
+from C_Linii as CL
+	inner join _Conturi as CT on 
+				CL.cont = CT.cont
+where 
+		CL.cont like '40%' and 
+		( CL.jurnal like 'J%' or CL.jurnal = 'SI' )
